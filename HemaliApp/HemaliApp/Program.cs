@@ -151,6 +151,43 @@ namespace HemaliApp
             return charCountMap;
         }
 
+        static void FindLongestRunningPositiveSequence(int[] numbers)
+        {
+            if (numbers == null)
+            {
+                //throw exception
+            }
+
+            int maxPositiveSeqLength = 0;
+            int currPositiveSeqLength = 0;
+
+            foreach (var num in numbers)
+            {
+                if (num <= 0)
+                {
+                    if (currPositiveSeqLength > maxPositiveSeqLength)
+                    {
+                        maxPositiveSeqLength = currPositiveSeqLength;
+                    }
+
+                    currPositiveSeqLength = 0;
+                    continue;
+                }
+                else
+                {
+                    // positive number
+                    ++currPositiveSeqLength;
+                }
+            }
+
+            if (currPositiveSeqLength > maxPositiveSeqLength)
+            {
+                maxPositiveSeqLength = currPositiveSeqLength;
+            }
+
+            Console.WriteLine("Length of longest positive sequence in the given array is " + maxPositiveSeqLength);
+        }
+
         static void Main(string[] args)
         {
             //ExecuteFindIntersection();
@@ -160,11 +197,18 @@ namespace HemaliApp
             //char output = GetMostFreqCount("madam");
             //Console.WriteLine(output);
 
-            var charCountMap = GetCharacterCounts("madam");
-            foreach (var pair in charCountMap)
-            {
-                Console.WriteLine(pair.Key + " " + pair.Value);
-            }
+            //var charCountMap = GetCharacterCounts("madam");
+
+            //Assert.Equals(charCountMap['m'], 2);
+            //Assert.Equals(charCountMap['a'], 2);
+            //Assert.Equals(charCountMap['d'], 1);
+
+            //foreach (var pair in charCountMap)
+            //{
+            //    Console.WriteLine(pair.Key + " " + pair.Value);
+            //}
+
+            FindLongestRunningPositiveSequence(new int[] { -1, 4, -3, 1, 2, 3, 4, 5, -7, -3, 1,2,3 });
         }
     }
 }
