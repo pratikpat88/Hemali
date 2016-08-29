@@ -188,6 +188,78 @@ namespace HemaliApp
             Console.WriteLine("Length of longest positive sequence in the given array is " + maxPositiveSeqLength);
         }
 
+        class Node
+        {
+            public Node left;
+            public Node right;
+
+            int data;
+        }
+
+        static int FindHeight(Node node)
+        {
+            if (node == null)
+            {
+                return 0;
+            }
+
+            int leftHeight = FindHeight(node.left);
+            int rightHeight = FindHeight(node.right);
+
+            if (leftHeight > rightHeight)
+            {
+                return leftHeight + 1;
+            }
+            else
+            {
+                return rightHeight + 1;
+            }
+        }
+
+        static int FindHeightWithCheck(Node node)
+        {
+            if (node == null)
+            {
+                return 0;
+            }
+
+            int leftHeight = FindHeightWithCheck(node.left);
+            int rightHeight = FindHeightWithCheck(node.right);
+
+            if (leftHeight == rightHeight)
+            {
+                return leftHeight + 1;
+            }
+            else
+            {
+                return -1;
+            }
+        }
+
+        static bool IsBinaryTreeHeightBalanced(Node root)
+        {
+            if (root == null)
+            {
+                return true;
+            }
+
+            int leftHeight = FindHeightWithCheck(root.left);
+            int rightHeight = FindHeightWithCheck(root.right);
+
+            if (leftHeight == -1 ||  rightHeight == -1)
+            {
+                return false;
+            } 
+            else if (leftHeight == rightHeight)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         static void Main(string[] args)
         {
             //ExecuteFindIntersection();
