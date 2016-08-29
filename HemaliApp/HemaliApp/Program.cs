@@ -72,10 +72,99 @@ namespace HemaliApp
             Console.WriteLine();
         }
 
+        static int GetCharacterCount(string str, char targetChar)
+        {
+            int count = 0;
+
+            foreach (char c in str)
+            {
+                if (c == targetChar)
+                {
+                    count++;
+                }
+            }
+
+            return count;
+        }
+
+        static void ExecuteGetCharacterCount(string str, char c)
+        {
+            Console.WriteLine(str + " " + c + " " + GetCharacterCount(str, c));
+        }
+        static void ExecuteGetCharacterCount()
+        {
+            ExecuteGetCharacterCount("madam", 'm');
+            ExecuteGetCharacterCount("madaM", 'm');
+            ExecuteGetCharacterCount("madaM", 'a');
+        }
+
+        static void TempFunction()
+        {
+            int[] arr = new int[] { 0, 1, 2, 3, 4, 5 };
+            Console.WriteLine(arr);
+        }
+
+        static char GetMostFreqCount(string str)
+        {
+            Dictionary<char, int> charCountMap = new Dictionary<char, int>();
+
+            char mostFreqChar = ' ';
+            int mostFreqCharCount = 0;
+
+            foreach (char c in str)
+            {
+                if (charCountMap.ContainsKey(c))
+                {
+                    charCountMap[c] = charCountMap[c] + 1;
+                }
+                else
+                {
+                    charCountMap[c] = 1;
+                }
+
+                if (charCountMap[c] > mostFreqCharCount)
+                {
+                    mostFreqChar = c;
+                    mostFreqCharCount = charCountMap[mostFreqChar];
+                }
+            }
+
+            return mostFreqChar;
+        }
+
+        static Dictionary<char, int> GetCharacterCounts(string str)
+        {
+            Dictionary<char, int> charCountMap = new Dictionary<char, int>();
+
+            foreach (char c in str)
+            {
+                if (charCountMap.ContainsKey(c))
+                {
+                    charCountMap[c] = charCountMap[c] + 1;
+                }
+                else
+                {
+                    charCountMap[c] = 1;
+                }
+            }
+
+            return charCountMap;
+        }
+
         static void Main(string[] args)
         {
+            //ExecuteFindIntersection();
+            //ExecuteGetCharacterCount();
+            //TempFunction();
 
-            ExecuteFindIntersection();
+            //char output = GetMostFreqCount("madam");
+            //Console.WriteLine(output);
+
+            var charCountMap = GetCharacterCounts("madam");
+            foreach (var pair in charCountMap)
+            {
+                Console.WriteLine(pair.Key + " " + pair.Value);
+            }
         }
     }
 }
