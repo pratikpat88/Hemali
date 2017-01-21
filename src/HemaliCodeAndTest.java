@@ -2,7 +2,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class HemaliJava {
+public class HemaliCodeAndTest {
 
     static int stringToInteger(String str) {
         int result = 0;
